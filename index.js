@@ -3,14 +3,15 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const { MONGO_URL, PORT } = process.env;
 
-// middlewares/bodyParserMiddleware.js
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/authRoute");
+const songRouter = require("./routes/songRoute");
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use("/api", userRoute);
+app.use("/api/sng", songRouter);
 
 mongoose
   .connect(MONGO_URL, {
