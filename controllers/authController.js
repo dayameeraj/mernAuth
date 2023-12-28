@@ -1,5 +1,7 @@
 const User = require("../schemas/userSchema");
 const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
+const { jwtExpierTimer } = require("./constants");
 
 const handelError = (err) => {
   let error = { username: "", password: "" };
@@ -24,14 +26,11 @@ const handelError = (err) => {
   return error;
 };
 
-const expierTimer = 3 * 24 * 60 * 60; // 3 days
-
 const createToken = (id) => {
-  return jwt.sign({ id }, "this is a secret change this later", {
-    expiresIn: expierTimer,
+  return jwt.sign({ id }, JWT_SECRET, {
+    expiresIn: jwtExpierTimer,
   });
 };
-async function signup(req, res) {}
 
 async function signupPost(req, res) {
   const { username, password } = req.body;
@@ -51,7 +50,6 @@ async function signupPost(req, res) {
     res.status(500).json({ errors });
   }
 }
-async function login(req, res) {}
 
 async function loginPost(req, res) {
   const { username, password } = req.body;
@@ -69,4 +67,4 @@ async function loginPost(req, res) {
   }
 }
 
-module.exports = { signup, signupPost, login, loginPost };
+module.exports = { signupPost, loginPost };
