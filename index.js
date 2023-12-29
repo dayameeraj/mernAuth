@@ -2,14 +2,19 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const { MONGO_URL, PORT } = process.env;
-
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/authRoute");
 const songRouter = require("./routes/songRoute");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
 app.use("/api", userRoute);
 app.use("/api/sng", songRouter);
 
