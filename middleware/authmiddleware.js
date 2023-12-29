@@ -14,7 +14,9 @@ const requireAuth = (req, res, next) => {
       }
     });
   } else {
-    res.status(401).json({ message: "Unauthorized: Missing or invalid token" });
+    res
+      .status(401)
+      .json({ message: "Unauthorized: Missing token or invalid token" });
   }
 };
 

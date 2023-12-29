@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const songSchema = new mongoose.Schema({
   songname: {
     type: String,
-    required: [true, "Your username is required"],
+    required: [true, "songName is required"],
   },
   url: {
     type: String,

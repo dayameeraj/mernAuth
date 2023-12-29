@@ -43,7 +43,7 @@ async function signupPost(req, res) {
     await newUser.save();
     const token = createToken(newUser._id);
     res
-      .status(201)
+      .status(200)
       .json({ message: "User registered successfully!", token: token });
   } catch (error) {
     const errors = handelError(error);
