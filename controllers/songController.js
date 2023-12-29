@@ -34,8 +34,6 @@ function addSong(req, res) {
           .json({ error: error.message, errorCode: error.http_code });
       }
     });
-    // const url = fileUpload.Upload(song.tempFilePath, "video");
-    // console.log(url);
   }
 }
 
